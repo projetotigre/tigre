@@ -1,4 +1,4 @@
-## TIGRE - Transparência dos Investimentos Governamentais Rastreadas Eletronicamente
+## TIGRE - Transparência dos Investimentos Governamentais Rastreados Eletronicamente
 
 ## Passos para executar o projeto:
 
