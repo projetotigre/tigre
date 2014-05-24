@@ -10,3 +10,6 @@ phpmyadmin/
 adminer/
 index.html
 .vagrant/
+.buildpath
+.project
+.settings/
