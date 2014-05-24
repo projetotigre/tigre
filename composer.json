@@ -10,6 +10,9 @@
 	"require-dev": {
     	"way/generators": "2.*"
 	},
+	"psr-4": {
+            "Tigre\\": "app/Tigre"
+        },
 	"autoload": {
 		"classmap": [
 			"app/commands",
