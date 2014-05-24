@@ -14,6 +14,7 @@ class SiconvImporter extends Command {
 	protected $resources = [
 		'proponentes' => '/siconv/v1/consulta/proponentes.json',
 		'areas_atuacao_proponente' => '/siconv/v1/consulta/areas_atuacao_proponente.json',
+		'municipios' => '/siconv/v1/consulta/municipios.json',
 	];
 
 	/**
@@ -106,6 +107,11 @@ class SiconvImporter extends Command {
 			case 'areas_atuacao_proponente':				
 				$this->importAreasAtuacaoProponente($data);
 			break;
+
+
+			case 'municipios':				
+				$this->importMunicipios($data);
+			break;
 						
 			default:
 				# code...
@@ -157,11 +163,33 @@ class SiconvImporter extends Command {
 
 			AreaAtuacaoProponente::create([
 				'id_siconv' => $item['id'],
-				'descricao' => ucfirst(mb_strtolower($item['descricao'],'UTF-8'))
+				'descricao' => ucfirst_words($item['descricao'])
 			]);
 		}
 	}
 
+	/**
+	 * Importa os dados de Areas Atuacao de Proponentes
+	 * @param  array $data retornado da api do siconv
+	 * @return [type]      	[description]
+	 */
+	public function importMunicipios($data)
+	{				
+		foreach ($data['municipios'] as $item)
+		{
+			$this->comment('Importando Municipio:'. $item['id']. '.');
+
+			Municipio::create([				
+				'nome' => ucfirst_words($item['nome'],'UTF-8'),
+				'municipio_id' => $item['id'],
+				'regiao_nome' => ucfirst_words($item['uf']['regiao']['nome']),
+				'regiao_sigla' => $item['uf']['regiao']['sigla'],
+				'uf_nome' => ucfirst_words($item['uf']['nome']),
+				'uf_sigla' => $item['uf']['sigla'],
+			]);
+		}
+	}
+	
 	/**
 	 * Get the console command arguments.
 	 *

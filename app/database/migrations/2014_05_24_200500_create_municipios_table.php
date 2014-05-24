@@ -13,8 +13,7 @@ class CreateMunicipiosTable extends Migration {
 	public function up()
 	{
 		Schema::create('municipios', function(Blueprint $table) {
-			$table->increments('id');
-			
+			$table->increments('id');			
 			$table->integer('municipio_id')->unique();
 			$table->string('nome');
 			$table->string('regiao_nome');
