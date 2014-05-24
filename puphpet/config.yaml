@@ -18,7 +18,7 @@ vagrantfile-local:
                     natdnshostresolver1: on
                 setextradata:
                     VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root: 1
-            <vmware:></vmware:>
+            vmware:
                 numvcpus: 1
         provision:
             puppet:
@@ -152,7 +152,7 @@ mysql:
         mj5NcYSS4FuU:
             grant:
                 - ALL
-            name: dbname
+            name: tigre
             host: localhost
             user: dbuser
             password: '123'
