@@ -3,8 +3,13 @@
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use GuzzleHttp\Client as Client;
 
 class SiconvImporter extends Command {
+
+	protected $resources = [
+		'proponentes' => '/siconv/v1/consulta/proponentes.json',
+	];
 
 	/**
 	 * The console command name.
@@ -27,7 +32,7 @@ class SiconvImporter extends Command {
 	 */
 	public function __construct()
 	{
-		parent::__construct();
+		parent::__construct();		
 	}
 
 	/**
@@ -37,7 +42,28 @@ class SiconvImporter extends Command {
 	 */
 	public function fire()
 	{
-		//
+		$client = new Client();
+
+		// Create a client with a base URL
+		$client = new GuzzleHttp\Client([			
+			'base_url' => 'http://api.convenios.gov.br'
+		]);
+
+		$resource = $this->option('resource');
+
+		if(!in_array($resource, array_keys($this->resources)))
+		{
+			return $this->error('Recurso inválido, favor checar a documentação.');
+		}
+
+		$this->info('Iniciando a importação do recurso '.$resource.'.');
+
+		// Send a request to http://api.convenios.gov.br
+		$response = $client->get('/siconv/v1/consulta/proponentes.json');
+
+		//convert to json
+		$data = $response->json();		
+
 	}
 
 	/**
@@ -48,7 +74,7 @@ class SiconvImporter extends Command {
 	protected function getArguments()
 	{
 		return array(
-			array('example', InputArgument::REQUIRED, 'An example argument.'),
+			//array('example', InputArgument::REQUIRED, 'An example argument.'),
 		);
 	}
 
@@ -60,7 +86,7 @@ class SiconvImporter extends Command {
 	protected function getOptions()
 	{
 		return array(
-			array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
+			array('resource', null, InputOption::VALUE_REQUIRED, 'Defina o recurso que deseja importar.', null),
 		);
 	}
 
