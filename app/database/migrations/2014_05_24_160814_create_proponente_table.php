@@ -12,9 +12,9 @@ class CreateProponenteTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('proponente', function(Blueprint $table) {
+		Schema::create('proponentes', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('cnpj');
+			$table->string('cnpj')->index()->unique();
 			$table->string('nome');
 			$table->integer('esfera_administrativa_id');
 			$table->integer('municipio_id');
@@ -25,13 +25,12 @@ class CreateProponenteTable extends Migration {
 			$table->string('nome_responsavel');
 			$table->string('telefone');
 			$table->string('fax');
-			$table->integer('natureza_juridica');
+			$table->integer('natureza_juridica_id');
 			$table->string('inscricao_estadual');
 			$table->string('inscricao_municipal');
 			$table->timestamps();
 		});
 	}
-
 
 	/**
 	 * Reverse the migrations.
@@ -40,7 +39,7 @@ class CreateProponenteTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('proponente');
+		Schema::drop('proponentes');
 	}
 
 }
