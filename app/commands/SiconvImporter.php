@@ -7,6 +7,8 @@ use GuzzleHttp\Client as Client;
 
 class SiconvImporter extends Command {
 
+	protected $base_url = 'http://api.convenios.gov.br';
+
 	protected $resources = [
 		'proponentes' => '/siconv/v1/consulta/proponentes.json',
 	];
@@ -46,7 +48,7 @@ class SiconvImporter extends Command {
 
 		// Create a client with a base URL
 		$client = new GuzzleHttp\Client([			
-			'base_url' => 'http://api.convenios.gov.br'
+			'base_url' => $this->base_url
 		]);
 
 		$resource = $this->option('resource');
@@ -59,10 +61,19 @@ class SiconvImporter extends Command {
 		$this->info('Iniciando a importação do recurso '.$resource.'.');
 
 		// Send a request to http://api.convenios.gov.br
-		$response = $client->get('/siconv/v1/consulta/proponentes.json');
+		$response = $client->get($this->resources[$resource]);
 
 		//convert to json
-		$data = $response->json();		
+		$data = $response->json();
+
+		foreach ($data['proponentes'] as $item)
+		{
+			Proponente::create([
+				
+			]);
+		}
+
+		dd($data);
 
 	}
 
