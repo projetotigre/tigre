@@ -12,7 +12,8 @@ class SiconvImporter extends Command {
 	protected $base_url = 'http://api.convenios.gov.br';
 
 	protected $resources = [
-	'proponentes' => '/siconv/v1/consulta/proponentes.json',
+		'proponentes' => '/siconv/v1/consulta/proponentes.json',
+		'areas_atuacao_proponente' => '/siconv/v1/consulta/areas_atuacao_proponente.json',
 	];
 
 	/**
@@ -101,12 +102,15 @@ class SiconvImporter extends Command {
 			case 'proponentes':				
 				$this->importProponentes($data);
 			break;
-			
+
+			case 'areas_atuacao_proponente':				
+				$this->importAreasAtuacaoProponente($data);
+			break;
+						
 			default:
 				# code...
 			break;
 		}
-
 	}
 
 	/**
@@ -115,9 +119,7 @@ class SiconvImporter extends Command {
 	 * @return [type]      	[description]
 	 */
 	public function importProponentes($data)
-	{		
-		$this->info('Apagando dados de proponentes.');
-
+	{				
 		foreach ($data['proponentes'] as $item)
 		{
 			$this->comment('Importando proponente CNPJ:'.$item['cnpj'].'.');
@@ -137,6 +139,25 @@ class SiconvImporter extends Command {
 				'natureza_juridica_id' => $item['natureza_juridica']['NaturezaJuridica']['id'],
 				'inscricao_estadual' => $item['inscricao_estadual'],
 				'inscricao_municipal' => $item['inscricao_municipal']
+			]);
+		}
+	}
+
+
+	/**
+	 * Importa os dados de Areas Atuacao de Proponentes
+	 * @param  array $data retornado da api do siconv
+	 * @return [type]      	[description]
+	 */
+	public function importAreasAtuacaoProponente($data)
+	{				
+		foreach ($data['areas_atuacao_proponente'] as $item)
+		{
+			$this->comment('Importando Area de Atuação:'. $item['id']. '.');
+
+			AreaAtuacaoProponente::create([
+				'id_siconv' => $item['id'],
+				'descricao' => ucfirst(mb_strtolower($item['descricao'],'UTF-8'))
 			]);
 		}
 	}

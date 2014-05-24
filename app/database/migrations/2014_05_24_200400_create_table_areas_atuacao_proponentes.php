@@ -14,7 +14,10 @@ class CreateTableAreasAtuacaoProponentes extends Migration {
 	{
 		Schema::create('areas_atuacao_proponente', function(Blueprint $table) {
 			$table->increments('id');
+
+			$table->integer('id_siconv')->index()->unique();
 			$table->string('descricao');
+			
 			$table->timestamps();
 		});
 	}
@@ -26,6 +29,6 @@ class CreateTableAreasAtuacaoProponentes extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('table_areas_atuacao_proponentes');
+		Schema::drop('areas_atuacao_proponente');
 	}
 }
