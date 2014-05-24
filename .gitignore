@@ -6,3 +6,7 @@ composer.lock
 .env.php
 .DS_Store
 Thumbs.db
+phpmyadmin/
+adminer/
+index.html
+.vagrant/
