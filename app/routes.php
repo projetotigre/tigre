@@ -17,3 +17,6 @@ Route::get('/', function()
 });
 
 Route::get('/convenios', 'ConveniosController@index');
+Route::get('/areas_atuacao', function(){
+    return AreaAtuacaoProponente::all();
+});

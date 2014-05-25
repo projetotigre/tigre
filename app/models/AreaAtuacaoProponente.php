@@ -1,6 +1,6 @@
 <?php
 
-class AreaAtuacaoProponente extends \Eloquent 
+class AreaAtuacaoProponente extends \Eloquent
 {
 
 	/**
@@ -11,8 +11,17 @@ class AreaAtuacaoProponente extends \Eloquent
 	protected $table = 'areas_atuacao_proponente';
 
 
-	protected $fillable = [	
+	protected $fillable = [
 		'id_siconv',
 		'descricao'
 	];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'created_at', 'updated_at'
+    ];
 }
