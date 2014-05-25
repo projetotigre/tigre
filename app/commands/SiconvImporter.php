@@ -116,8 +116,11 @@ class SiconvImporter extends Command {
 				$this->importEmpenhos($data);
 			break;
 
-			default:
-				# code...
+			case 'all':
+				$this->importProponentes($data);
+                $this->importAreasAtuacaoProponente($data);
+                $this->importMunicipios($data);
+                $this->importEmpenhos($data);
 			break;
 		}
 	}
