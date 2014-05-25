@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateEmpenhosTable extends Migration {
+class CreateConveniosTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,33 +12,23 @@ class CreateEmpenhosTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('empenhos', function(Blueprint $table) {
+		Schema::create('convenios', function(Blueprint $table) {
 			$table->increments('id');
 			
-			$table->integer('empenho_id')->unique();
-			$table->string('numero');
-			$table->integer('especie_id');
-			$table->integer('convenio_id');
-			$table->integer('cod_unidade_gestora_emitente');
-			$table->integer('cod_unidade_gestora_referencia');
-			$table->integer('cod_unidade_gestora_responsavel');
-			$table->integer('cod_gestao_emitente');
-			$table->integer('cod_gestao_referencia');
-			$table->integer('cod_fonte_recurso');
-			$table->string('numero_plano_trabalho_resumido');
-			$table->string('numero_plano_interno');
-			$table->string('esfera_orcamentaria');
-			$table->date('data_emissao');
-			$table->string('numero_interno_concedente');
-			$table->string('numero_interno_concedente_referencia');
-			$table->string('observacao');
-			$table->string('situacao');
-			$table->string('numero_lista');
-			$table->integer('cod_unidade_orcamentaria');
-			$table->string('subitem_natureza_despesa_descricao');
-			$table->integer('subitem_natureza_despesa_numero');
-			$table->double('valor');
-			$table->string('numero_empenho_referencia');
+			$table->integer('contrato_id')->unique();
+			$table->string('modalidade');
+			$table->integer('id_orgao');
+			$table->string('justificativa_resumida');
+			$table->string('objeto_resumido');
+			$table->date('data_inicio_vigencia');
+			$table->date('data_fim_vigencia');
+			$table->double('valor_global');
+			$table->double('valor_repasse_uniao');
+			$table->double('valor_contrapartida');
+			$table->date('data_assinatura');
+			$table->date('data_publicacao');
+			$table->integer('id_situacao_convenio');
+			$table->integer('proponente_id');
 
 			$table->timestamps();
 		});
@@ -51,6 +41,6 @@ class CreateEmpenhosTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('empenhos');
+		Schema::drop('convenios');
 	}
 }
