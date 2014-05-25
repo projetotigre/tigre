@@ -14,7 +14,8 @@ class SiconvImporter extends Command {
 	protected $resources = [
 		'proponentes' => '/siconv/v1/consulta/proponentes.json',
 		'areas_atuacao_proponente' => '/siconv/v1/consulta/areas_atuacao_proponente.json',
-		'municipios' => '/siconv/v1/consulta/municipios.json',
+        'municipios' => '/siconv/v1/consulta/municipios.json',
+		'empenhos' => '/siconv/v1/consulta/empenhos.json',
 	];
 
 	/**
@@ -38,7 +39,7 @@ class SiconvImporter extends Command {
 	 */
 	public function __construct()
 	{
-		parent::__construct();		
+		parent::__construct();
 	}
 
 	/**
@@ -51,10 +52,9 @@ class SiconvImporter extends Command {
 		$client = new Client();
 
 		// Create a client with a base URL
-		$this->client = new GuzzleHttp\Client([			
+		$this->client = new GuzzleHttp\Client([
 			'base_url' => $this->base_url
 		]);
-
 
 		$resource_key = $this->option('resource');
 
@@ -63,9 +63,9 @@ class SiconvImporter extends Command {
 			return $this->error('Recurso inválido, favor checar a documentação.');
 		}
 
-		$this->info('Iniciando a importação do recurso '. ucfirst($resource_key) .'.');		
+		$this->info('Iniciando a importação do recurso '. ucfirst($resource_key) .'.');
 
-		$this->paginate($resource_key);		
+		$this->paginate($resource_key);
 	}
 
 	/**
@@ -79,12 +79,12 @@ class SiconvImporter extends Command {
 		$offset_value = 0;
 
 		do
-		{	
+		{
 			// Send a request to http://api.convenios.gov.br
 			$response = $this->client->get($this->resources[$resource_key] . "?offset=$offset_value");
 
 			//convert to json
-			$data = $response->json();					
+			$data = $response->json();
 			$offset_value = $offset_value + 500;
 
 			$this->import($resource_key, $data);
@@ -100,19 +100,22 @@ class SiconvImporter extends Command {
 	public function import($resource_key, $data)
 	{
 		switch ($resource_key) {
-			case 'proponentes':				
+			case 'proponentes':
 				$this->importProponentes($data);
 			break;
 
-			case 'areas_atuacao_proponente':				
+			case 'areas_atuacao_proponente':
 				$this->importAreasAtuacaoProponente($data);
 			break;
 
+			case 'municipios':
+                $this->importMunicipios($data);
+            break;
 
-			case 'municipios':				
-				$this->importMunicipios($data);
+            case 'empenhos':
+				$this->importEmpenhos($data);
 			break;
-						
+
 			default:
 				# code...
 			break;
@@ -125,7 +128,7 @@ class SiconvImporter extends Command {
 	 * @return [type]      	[description]
 	 */
 	public function importProponentes($data)
-	{				
+	{
 		foreach ($data['proponentes'] as $item)
 		{
 			$this->comment('Importando proponente CNPJ:'.$item['cnpj'].'.');
@@ -156,7 +159,7 @@ class SiconvImporter extends Command {
 	 * @return [type]      	[description]
 	 */
 	public function importAreasAtuacaoProponente($data)
-	{				
+	{
 		foreach ($data['areas_atuacao_proponente'] as $item)
 		{
 			$this->comment('Importando Area de Atuação:'. $item['id']. '.');
@@ -174,12 +177,12 @@ class SiconvImporter extends Command {
 	 * @return [type]      	[description]
 	 */
 	public function importMunicipios($data)
-	{				
+	{
 		foreach ($data['municipios'] as $item)
 		{
 			$this->comment('Importando Municipio:'. $item['id']. '.');
 
-			Municipio::create([				
+			Municipio::create([
 				'nome' => ucfirst_words($item['nome'],'UTF-8'),
 				'municipio_id' => $item['id'],
 				'regiao_nome' => ucfirst_words($item['uf']['regiao']['nome']),
@@ -189,7 +192,48 @@ class SiconvImporter extends Command {
 			]);
 		}
 	}
-	
+
+    /**
+     * Importa os dados de Empenhos
+     * @param  array $data retornado da api do siconv
+     */
+    public function importEmpenhos($data)
+    {
+        foreach ($data['municipios'] as $item)
+        {
+            $this->comment('Importando Empenho:'. $item['id']. '.');
+
+            Empenho::create([
+                'empenho_id',
+                'numero',
+                'especie_id',
+                'convenio_id',
+                'cod_unidade_gestora_emitente',
+                'cod_unidade_gestora_referencia',
+                'cod_unidade_gestora_responsavel',
+                'cod_gestao_emitente',
+                'cod_gestao_referencia',
+                'cod_fonte_recurso',
+                'numero_plano_trabalho_resumido',
+                'numero_plano_interno',
+                'esfera_orcamentaria',
+                'data_emissao',
+                'numero_interno_concedente',
+                'numero_interno_concedente_referencia',
+                'observacao',
+                'situacao',
+                'numero_lista',
+                'cod_unidade_orcamentaria',
+                'subitem_natureza_despesa_descricao',
+                'subitem_natureza_despesa_numero',
+                'valor',
+                'numero_empenho_referencia',
+            ]);
+        }
+    }
+
+
+
 	/**
 	 * Get the console command arguments.
 	 *

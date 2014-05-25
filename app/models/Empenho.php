@@ -1,6 +1,6 @@
 <?php
 
-class Empenho extends \Eloquent 
+class Empenho extends \Eloquent
 {
 	protected $fillable = [
 		'empenho_id',
@@ -26,6 +26,6 @@ class Empenho extends \Eloquent
 		'subitem_natureza_despesa_descricao',
 		'subitem_natureza_despesa_numero',
 		'valor',
-		'numero_empenho_referencia',	
+		'numero_empenho_referencia',
 	];
 }
