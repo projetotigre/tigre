@@ -61,16 +61,16 @@ class SiconvImporter extends Command {
 
 		if(!in_array($resource_key, array_keys($this->resources)))
 		{
-			return $this->error('Recurso inválido, favor checar a documentação.');
+			return $this->error('Recurso invÃ¡lido, favor checar a documentaÃ§Ã£o.');
 		}
 
-		$this->info('Iniciando a importação do recurso '. ucfirst($resource_key) .'.');
+		$this->info('Iniciando a importaÃ§Ã£o do recurso '. ucfirst($resource_key) .'.');
 
 		$this->paginate($resource_key);
 	}
 
 	/**
-	 * Pagina os dados da API de Convênios
+	 * Pagina os dados da API de ConvÃªnios
 	 * @param  array $data array retornado da api do siconv
 	 * @return [type] [description]
 	 */
@@ -94,7 +94,7 @@ class SiconvImporter extends Command {
 	}
 
 	/**
-	 * Pagina os dados da API de Conv�nios
+	 * Pagina os dados da API de Convênios
 	 * @param  array $data array retornado da api do siconv
 	 * @return [type] [description]
 	 */
@@ -116,7 +116,7 @@ class SiconvImporter extends Command {
             case 'empenhos':
 				$this->importEmpenhos($data);
 			break;
-			
+
             case 'convenios':
             	$this->importConvenios($data);
             break;
@@ -171,7 +171,7 @@ class SiconvImporter extends Command {
 	{
 		foreach ($data['areas_atuacao_proponente'] as $item)
 		{
-			$this->comment('Importando Area de Atuação:'. $item['id']. '.');
+			$this->comment('Importando Area de AtuaÃ§Ã£o:'. $item['id']. '.');
 
 			AreaAtuacaoProponente::create(array(
 				'id_siconv' => $item['id'],
@@ -208,7 +208,7 @@ class SiconvImporter extends Command {
      */
     public function importEmpenhos($data)
     {
-        foreach ($data['municipios'] as $item)
+        foreach ($data['empenhos'] as $item)
         {
             $this->comment('Importando Empenho:'. $item['id']. '.');
 
@@ -252,11 +252,11 @@ class SiconvImporter extends Command {
     	foreach ($data['convenios'] as $item)
     	{
     		$this->comment('Importando Convenio:'. $item['id']. '.');
-    
+
     		Convenio::create(array(
     			'contrato_id' => $item['id'],
-    			'modalidade' => $item['modalidade'],
-    			'id_orgao' => $item['orgao_concedente']['Orgao']['id'],
+    			'modalidade' =>  $item['modalidade'],
+    			'id_orgao'   => $item['orgao_concedente']['Orgao']['id'],
     			'justificativa_resumida' => $item['justificativa_resumida'],
     			'objeto_resumido' => $item['objeto_resumido'],
     			'data_inicio_vigencia' => $item['data_inicio_vigencia'],
