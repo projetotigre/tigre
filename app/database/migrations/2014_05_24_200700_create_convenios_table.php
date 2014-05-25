@@ -14,7 +14,7 @@ class CreateConveniosTable extends Migration {
 	{
 		Schema::create('convenios', function(Blueprint $table) {
 			$table->increments('id');
-			
+
 			$table->integer('contrato_id')->unique();
 			$table->string('modalidade');
 			$table->integer('id_orgao');
@@ -25,8 +25,8 @@ class CreateConveniosTable extends Migration {
 			$table->double('valor_global');
 			$table->double('valor_repasse_uniao');
 			$table->double('valor_contrapartida');
-			$table->date('data_assinatura');
-			$table->date('data_publicacao');
+			$table->date('data_assinatura')->nullable();
+			$table->date('data_publicacao')->nullable();
 			$table->integer('id_situacao_convenio');
 			$table->integer('proponente_id');
 
