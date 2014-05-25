@@ -1,0 +1,135 @@
+[33mcommit 0528eae8d40287c3d7aa8e98538e02d2a73ae508[m
+Merge: 07300cf 524cb55
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 18:36:07 2014 -0300
+
+    Merge branch 'master' of https://github.com/hackatondasosc/tigre
+
+[33mcommit 07300cf2f40f50b45cadcde5cb43d8aa22515a41[m
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 18:35:27 2014 -0300
+
+    import areas de atuação
+
+[33mcommit 524cb5503fd2e198f7adb8bc36b676ef16126c28[m
+Author: Thiago Branco Meurer <thiago@thiagopriest.net>
+Date:   Sat May 24 18:31:56 2014 -0300
+
+    Update readme.md
+    
+    Mudança da descrição do nome do projeto.
+
+[33mcommit efd72a8cc6745f7336bcb7af63b6c408907a5092[m
+Author: Rafael <amilucena@gmail.com>
+Date:   Sat May 24 18:21:50 2014 -0300
+
+    Subindo arquivo de criacao de tabela de municipios.
+
+[33mcommit 7f234c8d0e6de852688a50f7889840d47234ace8[m
+Author: Rafael <amilucena@gmail.com>
+Date:   Sat May 24 17:49:49 2014 -0300
+
+    Subindo arquivo de ignore
+
+[33mcommit c2142c457b4bd6a71a161968fb1501e42106a42e[m
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 17:44:02 2014 -0300
+
+    add table areas de atuacao dos proponents
+
+[33mcommit 1fbab9ca5695db244fe971b86a583c6500fa1f50[m
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 16:56:59 2014 -0300
+
+    update proponente importer
+
+[33mcommit 4e33f3a8324047040e0ff58533ab35d36181dbb6[m
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 14:00:06 2014 -0300
+
+    update importer
+
+[33mcommit 3bebc919d098ed38aae35012da64009ba5f5b4ed[m
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 13:39:05 2014 -0300
+
+    add proponente migration
+
+[33mcommit f38f3931a4beef13538766223af2de3d221dacaa[m
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 13:34:29 2014 -0300
+
+    add dev db config
+
+[33mcommit 60c5a07f96d19616b6d0269c9af15c923c859f05[m
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 13:34:08 2014 -0300
+
+    add Tigre namespace
+
+[33mcommit 7f911c59d6f23e26cb1812b8ab78ab42757e5a98[m
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 13:33:50 2014 -0300
+
+    add laravel generators
+
+[33mcommit 1790f4ad96f04a1c6a6d5bd19f363c5af11926d5[m
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 13:33:01 2014 -0300
+
+    initialize import command
+
+[33mcommit 2dc29fe9ee32f7de488c115139370ecac015d716[m
+Merge: 88d3c17 4c353ec
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 10:59:04 2014 -0300
+
+    Merge branch 'master' of https://github.com/hackatondasosc/tigre
+
+[33mcommit 88d3c175215c859dd379d4ab15b0d15dd6a8d14d[m
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 10:55:56 2014 -0300
+
+    add siconv:import command
+
+[33mcommit 93d7795de9728db8be4f794c1b053a478310c984[m
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 10:55:19 2014 -0300
+
+    add post install scripts]
+
+[33mcommit 4c353ec40f321c5dc31fa9a49a73177007903f88[m
+Author: Gabriel Vítor <gvsrepins@gmail.com>
+Date:   Sat May 24 10:11:52 2014 -0300
+
+    Update readme.md
+
+[33mcommit 72819901385aac5b81e71a4352fe2933ed2e9bcf[m
+Author: Gabriel Vítor <gvsrepins@gmail.com>
+Date:   Sat May 24 10:08:07 2014 -0300
+
+    Update readme.md
+
+[33mcommit d2add43688574846077127719a7a2b7b75f86744[m
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 09:58:56 2014 -0300
+
+    add guzzle and laravel-generator
+
+[33mcommit 7e16b6f30247690a531f26ccd185eb7b66a46320[m
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 08:44:50 2014 -0300
+
+    update server config
+
+[33mcommit 2a127bee5f4974476219ddea329433e18021311e[m
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 02:29:56 2014 -0300
+
+    add vagrant config
+
+[33mcommit fab1c8ae5daa7c36bec3b3bb4854ed2040b4132c[m
+Author: Gabriel Vitor <gvsrepins@gmail.com>
+Date:   Sat May 24 00:32:29 2014 -0300
+
+    add new laravel instalation

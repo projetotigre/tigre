@@ -11,12 +11,13 @@ class SiconvImporter extends Command {
 
 	protected $base_url = 'http://api.convenios.gov.br';
 
-	protected $resources = [
+	protected $resources = array(
 		'proponentes' => '/siconv/v1/consulta/proponentes.json',
 		'areas_atuacao_proponente' => '/siconv/v1/consulta/areas_atuacao_proponente.json',
         'municipios' => '/siconv/v1/consulta/municipios.json',
 		'empenhos' => '/siconv/v1/consulta/empenhos.json',
-	];
+		'convenios' => '/siconv/v1/consulta/convenios.json',
+	);
 
 	/**
 	 * The console command name.
@@ -30,7 +31,7 @@ class SiconvImporter extends Command {
 	 *
 	 * @var string
 	 */
-	protected $description = 'Faz a importação dos dados, apartir da API do Siconv.';
+	protected $description = 'Faz a importa&ccedil&atildeo dos dados, apartir da API do Siconv.';
 
 	/**
 	 * Create a new command instance.
@@ -52,9 +53,9 @@ class SiconvImporter extends Command {
 		$client = new Client();
 
 		// Create a client with a base URL
-		$this->client = new GuzzleHttp\Client([
+		$this->client = new GuzzleHttp\Client(array(
 			'base_url' => $this->base_url
-		]);
+		));
 
 		$resource_key = $this->option('resource');
 
@@ -93,7 +94,7 @@ class SiconvImporter extends Command {
 	}
 
 	/**
-	 * Pagina os dados da API de Convênios
+	 * Pagina os dados da API de Conv�nios
 	 * @param  array $data array retornado da api do siconv
 	 * @return [type] [description]
 	 */
@@ -115,12 +116,17 @@ class SiconvImporter extends Command {
             case 'empenhos':
 				$this->importEmpenhos($data);
 			break;
+			
+            case 'convenios':
+            	$this->importConvenios($data);
+            break;
 
 			case 'all':
 				$this->importProponentes($data);
                 $this->importAreasAtuacaoProponente($data);
                 $this->importMunicipios($data);
                 $this->importEmpenhos($data);
+                $this->importConvenios($data);
 			break;
 		}
 	}
@@ -136,7 +142,7 @@ class SiconvImporter extends Command {
 		{
 			$this->comment('Importando proponente CNPJ:'.$item['cnpj'].'.');
 
-			Proponente::create([
+			Proponente::create(array(
 				'cnpj' => $item['cnpj'],
 				'nome' => $item['nome'],
 				'esfera_administrativa_id' => $item['esfera_administrativa']['EsferaAdministrativa']['id'],
@@ -151,7 +157,7 @@ class SiconvImporter extends Command {
 				'natureza_juridica_id' => $item['natureza_juridica']['NaturezaJuridica']['id'],
 				'inscricao_estadual' => $item['inscricao_estadual'],
 				'inscricao_municipal' => $item['inscricao_municipal']
-			]);
+			));
 		}
 	}
 
@@ -167,10 +173,10 @@ class SiconvImporter extends Command {
 		{
 			$this->comment('Importando Area de Atuação:'. $item['id']. '.');
 
-			AreaAtuacaoProponente::create([
+			AreaAtuacaoProponente::create(array(
 				'id_siconv' => $item['id'],
 				'descricao' => ucfirst_words($item['descricao'])
-			]);
+			));
 		}
 	}
 
@@ -185,14 +191,14 @@ class SiconvImporter extends Command {
 		{
 			$this->comment('Importando Municipio:'. $item['id']. '.');
 
-			Municipio::create([
-				'nome' => ucfirst_words($item['nome'],'UTF-8'),
+			Municipio::create(array(
+				'nome' => $item['nome'],
 				'municipio_id' => $item['id'],
-				'regiao_nome' => ucfirst_words($item['uf']['regiao']['nome']),
+				'regiao_nome' => $item['uf']['regiao']['nome'],
 				'regiao_sigla' => $item['uf']['regiao']['sigla'],
-				'uf_nome' => ucfirst_words($item['uf']['nome']),
+				'uf_nome' => $item['uf']['nome'],
 				'uf_sigla' => $item['uf']['sigla'],
-			]);
+			));
 		}
 	}
 
@@ -206,36 +212,65 @@ class SiconvImporter extends Command {
         {
             $this->comment('Importando Empenho:'. $item['id']. '.');
 
-            Empenho::create([
-                'empenho_id',
-                'numero',
-                'especie_id',
-                'convenio_id',
-                'cod_unidade_gestora_emitente',
-                'cod_unidade_gestora_referencia',
-                'cod_unidade_gestora_responsavel',
-                'cod_gestao_emitente',
-                'cod_gestao_referencia',
-                'cod_fonte_recurso',
-                'numero_plano_trabalho_resumido',
-                'numero_plano_interno',
-                'esfera_orcamentaria',
-                'data_emissao',
-                'numero_interno_concedente',
-                'numero_interno_concedente_referencia',
-                'observacao',
-                'situacao',
-                'numero_lista',
-                'cod_unidade_orcamentaria',
-                'subitem_natureza_despesa_descricao',
-                'subitem_natureza_despesa_numero',
-                'valor',
-                'numero_empenho_referencia',
-            ]);
+            Empenho::create(array(
+                'empenho_id' => $item['id'],
+                'numero' => $item['numero'],
+                'especie_id' => $item['especie']['EspecieEmpenho']['id'],
+                'convenio_id' => $item['convenio']['Convenio']['id'],
+                'cod_unidade_gestora_emitente' => $item['cod_unidade_gestora_emitente'],
+                'cod_unidade_gestora_referencia' => $item['cod_unidade_gestora_referencia'],
+                'cod_unidade_gestora_responsavel' => $item['cod_unidade_gestora_responsavel'],
+                'cod_gestao_emitente' => $item['cod_gestao_emitente'],
+                'cod_gestao_referencia' => $item['cod_gestao_referencia'],
+                'cod_fonte_recurso' => $item['cod_fonte_recurso'],
+                'numero_plano_trabalho_resumido' => $item['numero_plano_trabalho_resumido'],
+                'numero_plano_interno' => $item['numero_plano_interno'],
+                'esfera_orcamentaria' => $item['esfera_orcamentaria'],
+                'data_emissao' => $item['data_emissao'],
+                'numero_interno_concedente' => $item['numero_interno_concedente'],
+                'numero_interno_concedente_referencia' => $item['numero_interno_concedente_referencia'],
+                'observacao' => $item['observacao'],
+                'situacao' => $item['situacao'],
+                'numero_lista' => $item['numero_lista'],
+                'cod_unidade_orcamentaria' => $item['cod_unidade_orcamentaria'],
+                'subitem_natureza_despesa_descricao' => $item['natureza_despesa_subitem']['descricao'],
+                'subitem_natureza_despesa_numero' => $item['natureza_despesa_subitem']['numero'],
+                'valor' => $item['valor'],
+                'numero_empenho_referencia' => $item['numero_empenho_referencia'],
+            ));
         }
     }
 
-
+    /**
+     * Importa os dados de Convenios
+     * @param  array $data retornado da api do siconv
+     * @author Rafael Lima
+     * @since 2014-05-25
+     */
+    public function importConvenios($data)
+    {
+    	foreach ($data['convenios'] as $item)
+    	{
+    		$this->comment('Importando Convenio:'. $item['id']. '.');
+    
+    		Convenio::create(array(
+    			'contrato_id' => $item['id'],
+    			'modalidade' => $item['modalidade'],
+    			'id_orgao' => $item['orgao_concedente']['Orgao']['id'],
+    			'justificativa_resumida' => $item['justificativa_resumida'],
+    			'objeto_resumido' => $item['objeto_resumido'],
+    			'data_inicio_vigencia' => $item['data_inicio_vigencia'],
+    			'data_fim_vigencia' => $item['data_fim_vigencia'],
+    			'valor_global' => $item['valor_global'],
+    			'valor_repasse_uniao' => $item['valor_repasse'],
+    			'valor_contrapartida' => $item['valor_contra_partida'],
+    			'data_assinatura' => $item['data_publicacao'],
+    			'data_publicacao' => $item['data_publicacao'],
+    			'id_situacao_convenio' => $item['situacao']['SituacaoConvenio']['id'],
+    			'proponente_id' => $item['proponente']['Proponente']['id'],
+    		));
+    	}
+    }
 
 	/**
 	 * Get the console command arguments.

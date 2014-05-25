@@ -1,22 +1,22 @@
 
 <?php
 
-class Proponente extends \Eloquent
+class Convenio extends \Eloquent
 {
-	protected $fillable = [
-		'cnpj',
-		'nome',
-		'esfera_administrativa_id',
-		'municipio_id',
-		'endereco',
-		'cep',
-		'pessoa_responsavel_id',
-		'cpf_responsavel',
-		'nome_responsavel',
-		'telefone',
-		'fax',
-		'natureza_juridica_id',
-		'inscricao_estadual',
-		'inscricao_municipal',
-	];
+	protected $fillable = array(
+		'contrato_id',
+		'modalidade',
+		'id_orgao',
+		'justificativa_resumida',
+		'objeto_resumido',
+		'data_inicio_vigencia',
+		'data_fim_vigencia',
+		'valor_global',
+		'valor_repasse_uniao',
+		'valor_contrapartida',
+		'data_assinatura',
+		'data_publicacao',
+		'id_situacao_convenio',
+		'proponente_id',
+	);
 }

@@ -2,7 +2,7 @@
 
 class Empenho extends \Eloquent
 {
-	protected $fillable = [
+	protected $fillable = array(
 		'empenho_id',
 		'numero',
 		'especie_id',
@@ -27,5 +27,5 @@ class Empenho extends \Eloquent
 		'subitem_natureza_despesa_numero',
 		'valor',
 		'numero_empenho_referencia',
-	];
+	);
 }
