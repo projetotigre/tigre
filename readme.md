@@ -7,4 +7,6 @@
 2. Clone este repositório (instale o git se já não o tiver feito).
 3. Dentro do diretório do projeto execute o comando `vagrant up` em seu terminal.
 4. **(opcional)** Edite o arquivo hosts do seu sitema e aponto o ip 192.168.56.101 para uma url qualquer. Ex de url: tigre.dev
-5. O projeto está agora acessível online em [http://107.170.175.95](http://http://107.170.175.95)
+
+
+O projeto está acessível online em [http://107.170.175.95/index.html](http://107.170.175.95/index.html)
