@@ -1,6 +1,6 @@
 <?php
 
-class AreaAtuacaoProponente extends \Eloquent
+class NaturezaJuridica extends \Eloquent
 {
 
 	/**
@@ -8,12 +8,12 @@ class AreaAtuacaoProponente extends \Eloquent
 	 *
 	 * @var string
 	 */
-	protected $table = 'areas_atuacao_proponente';
+	protected $table = 'naturezas_juridicas';
 
 
 	protected $fillable = [
 		'siconv_id',
-		'descricao'
+		'nome'
 	];
 
     /**

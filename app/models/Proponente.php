@@ -17,6 +17,7 @@ class Proponente extends \Eloquent
 		'natureza_juridica_id',
 		'inscricao_estadual',
 		'inscricao_municipal',
+        'siconv_id',
 	];
 
 
