@@ -1,6 +1,7 @@
 <?php
 
-class ConveniosController extends \BaseController {
+class ConveniosController extends \BaseController
+{
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +10,20 @@ class ConveniosController extends \BaseController {
 	 */
 	public function index()
 	{
-		return Convenio::where('data_inicio_vigencia', '>' ,'2012-01-01')->first();
-	}
+
+        $ano  = Input::get('ano', date('Y')); //get the parameter
+        $data = \Carbon\Carbon::createFromFormat('Y-m-d', $ano.'-01-01'); //convert in a carbon date
+        $query_convenio     =   Convenio::where('data_inicio_vigencia', '>=' ,$data)
+                                    ->orWhere('data_inicio_vigencia', '<=' ,$data->addYear());
+
+        $natureza_juridica_id    = Input::get('natureza_juridica_id', '');
+
+        if(!empty($natureza_juridica_id)
+        {
+            $query_convenio->where('natureza_juridica_id', $natureza_juridica_id);
+        }
+
+        return $query_convenio->get();
+    }
 
 }

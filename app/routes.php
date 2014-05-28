@@ -15,8 +15,11 @@
 // Route group for API versioning
 Route::group(array('prefix' => 'api/v1'), function()
 {
+
     Route::get('/convenios', 'ConveniosController@index');
+
     Route::get('/areas_atuacao', function(){
         return AreaAtuacaoProponente::all();
     });
+
 });
