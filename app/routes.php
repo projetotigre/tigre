@@ -23,6 +23,11 @@ Route::group(array('prefix' => 'api/v1'), function()
         return AreaAtuacaoProponente::all();
     });
 
+    Route::get('/naturezas_juridicas', function()
+    {
+        return NaturezaJuridica::all();
+    });
+
     Route::get('/organizacoes', function()
     {
         return Proponente::all(); //returna apenas 50 registros para teste
