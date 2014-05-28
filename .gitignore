@@ -12,4 +12,5 @@ index.html
 .vagrant/
 .buildpath
 .project
-.settings/
+.settings/public/
+public/
