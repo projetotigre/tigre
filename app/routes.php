@@ -18,8 +18,14 @@ Route::group(array('prefix' => 'api/v1'), function()
 
     Route::get('/convenios', 'ConveniosController@index');
 
-    Route::get('/areas_atuacao', function(){
+    Route::get('/areas_atuacao', function()
+    {
         return AreaAtuacaoProponente::all();
+    });
+
+    Route::get('/organizacoes', function()
+    {
+        return Proponente::all()->take(50); //returna apenas 50 registros para teste
     });
 
 });
