@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', function()
-{
-    return View::make('hello');
-});
 
-Route::get('/convenios', 'ConveniosController@index');
-Route::get('/areas_atuacao', function(){
-    return AreaAtuacaoProponente::all();
+// Route group for API versioning
+Route::group(array('prefix' => 'api/v1'), function()
+{
+    Route::get('/convenios', 'ConveniosController@index');
+    Route::get('/areas_atuacao', function(){
+        return AreaAtuacaoProponente::all();
+    });
 });

@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-		"guzzlehttp/guzzle": "~4.0"
+		"guzzlehttp/guzzle": "~4.0",
+		"barryvdh/laravel-cors": "dev-master"
 	},
 	"require-dev": {
     	"way/generators": "2.*"
