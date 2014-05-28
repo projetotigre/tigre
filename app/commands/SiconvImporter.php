@@ -254,20 +254,20 @@ class SiconvImporter extends Command {
     		$this->comment('Importando Convenio:'. $item['id']. '.');
 
     		Convenio::create(array(
-    			'contrato_id' => $item['id'],
-    			'modalidade' =>  $item['modalidade'],
-    			'id_orgao'   => $item['orgao_concedente']['Orgao']['id'],
+    			'contrato_id'            => $item['id'],
+    			'modalidade'             => $item['modalidade'],
+    			'id_orgao'               => $item['orgao_concedente']['Orgao']['id'],
     			'justificativa_resumida' => $item['justificativa_resumida'],
-    			'objeto_resumido' => $item['objeto_resumido'],
-    			'data_inicio_vigencia' => $item['data_inicio_vigencia'],
-    			'data_fim_vigencia' => $item['data_fim_vigencia'],
-    			'valor_global' => $item['valor_global'],
-    			'valor_repasse_uniao' => $item['valor_repasse'],
-    			'valor_contrapartida' => $item['valor_contra_partida'],
-    			'data_assinatura' => $item['data_publicacao'],
-    			'data_publicacao' => $item['data_publicacao'],
-    			'id_situacao_convenio' => $item['situacao']['SituacaoConvenio']['id'],
-    			'proponente_id' => $item['proponente']['Proponente']['id'],
+    			'objeto_resumido'        => $item['objeto_resumido'],
+    			'data_inicio_vigencia'   => $item['data_inicio_vigencia'],
+    			'data_fim_vigencia'      => $item['data_fim_vigencia'],
+    			'valor_global'           => $item['valor_global'],
+    			'valor_repasse_uniao'    => $item['valor_repasse'],
+    			'valor_contrapartida'    => $item['valor_contra_partida'],
+    			'data_assinatura'        => $item['data_assinatura'],
+    			'data_publicacao'        => $item['data_publicacao'],
+    			'id_situacao_convenio'   => $item['situacao']['SituacaoConvenio']['id'],
+    			'proponente_id'          => $item['proponente']['Proponente']['id'],
     		));
     	}
     }
