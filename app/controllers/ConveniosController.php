@@ -21,14 +21,15 @@ class ConveniosController extends \BaseController
 	public function index()
 	{
         $ano  = Input::get('ano', date('Y')); //get the parameter
-        $natureza_juridica_id = Input::get('natureza_juridica_id');
+        $natureza_juridica_id = Input::get('natureza_juridica');
 
         $date = \Carbon\Carbon::createFromFormat('Y-m-d', $ano.'-01-01'); //convert in a carbon date
 
 
         $query_convenio = $this->convenio
 
-            ->join('proponentes', 'proponentes.id', '=', 'convenios.contrato_id')
+            ->join('proponentes', 'convenios.proponente_id', '=', 'proponentes.siconv_id')
+            ->join('naturezas_juridicas', 'proponentes.natureza_juridica_id', '=', 'naturezas_juridicas.siconv_id')
 
             ->where('data_inicio_vigencia', '>', $date->format('Y-m-d'))
             ->where('data_inicio_vigencia', '<', $date->addYear()->format('Y-m-d'));
@@ -36,10 +37,21 @@ class ConveniosController extends \BaseController
 
         if(!empty($natureza_juridica_id))
         {
-            $query_convenio->where('natureza_juridica_id', $natureza_juridica_id);
+            $query_convenio->where('proponentes.natureza_juridica_id', $natureza_juridica_id);
         }
 
-        return $query_convenio->get();
+
+        return Response::json([
+            'meta' => [
+                'total_itens' => $query_convenio->count(),
+                'valor_total' => $query_convenio->sum('valor_global'),
+            ],
+            'convenios' => $query_convenio->get()->toArray()
+        ]);
+
+        //return $result =
+
+        dd(DB::getQueryLog());
 
     }
 

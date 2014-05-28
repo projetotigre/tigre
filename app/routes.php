@@ -25,7 +25,9 @@ Route::group(array('prefix' => 'api/v1'), function()
 
     Route::get('/organizacoes', function()
     {
-        return Proponente::all()->take(50); //returna apenas 50 registros para teste
+        return Proponente::all(); //returna apenas 50 registros para teste
+
+        //dd(DB::getQueryLog());
     });
 
 });
