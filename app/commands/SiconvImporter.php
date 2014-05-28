@@ -31,7 +31,7 @@ class SiconvImporter extends Command {
 	 *
 	 * @var string
 	 */
-	protected $description = 'Faz a importa&ccedil&atildeo dos dados, apartir da API do Siconv.';
+	protected $description = 'Faz a importação dos dados, apartir da API do Siconv.';
 
 	/**
 	 * Create a new command instance.
@@ -61,10 +61,10 @@ class SiconvImporter extends Command {
 
 		if(!in_array($resource_key, array_keys($this->resources)))
 		{
-			return $this->error('Recurso invÃ¡lido, favor checar a documentaÃ§Ã£o.');
+			return $this->error('Recurso inválidos, favor checar a documentaÃ§Ã£o.');
 		}
 
-		$this->info('Iniciando a importaÃ§Ã£o do recurso '. ucfirst($resource_key) .'.');
+		$this->info('Iniciando a importação do recurso '. ucfirst($resource_key) .'.');
 
 		$this->paginate($resource_key);
 	}
@@ -143,6 +143,7 @@ class SiconvImporter extends Command {
 			$this->comment('Importando proponente CNPJ:'.$item['cnpj'].'.');
 
 			Proponente::create(array(
+                'siconv_id' => $item['id'],
 				'cnpj' => $item['cnpj'],
 				'nome' => $item['nome'],
 				'esfera_administrativa_id' => $item['esfera_administrativa']['EsferaAdministrativa']['id'],
@@ -171,10 +172,10 @@ class SiconvImporter extends Command {
 	{
 		foreach ($data['areas_atuacao_proponente'] as $item)
 		{
-			$this->comment('Importando Area de AtuaÃ§Ã£o:'. $item['id']. '.');
+			$this->comment('Importando Area de Atuação:'. $item['id']. '.');
 
 			AreaAtuacaoProponente::create(array(
-				'id_siconv' => $item['id'],
+				'siconv_id' => $item['id'],
 				'descricao' => ucfirst_words($item['descricao'])
 			));
 		}

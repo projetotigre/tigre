@@ -1,8 +1,8 @@
 <?php
 
-class Proponente extends \Eloquent 
+class Proponente extends \Eloquent
 {
-	protected $fillable = [	
+	protected $fillable = [
 		'cnpj',
 		'nome',
 		'esfera_administrativa_id',
@@ -16,6 +16,12 @@ class Proponente extends \Eloquent
 		'fax',
 		'natureza_juridica_id',
 		'inscricao_estadual',
-		'inscricao_municipal',	
+		'inscricao_municipal',
 	];
+
+
+    public function area_atuacao()
+    {
+        return $this->belongsTo('AreaAtuacaoProponente');
+    }
 }

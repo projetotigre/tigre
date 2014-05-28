@@ -19,4 +19,10 @@ class Convenio extends \Eloquent
 		'id_situacao_convenio',
 		'proponente_id',
 	);
+
+
+    public function proponente()
+    {
+        return $this->belongsTo('Proponente');
+    }
 }
