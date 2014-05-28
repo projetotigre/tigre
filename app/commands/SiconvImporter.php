@@ -16,7 +16,8 @@ class SiconvImporter extends Command {
 		'areas_atuacao_proponente' => '/siconv/v1/consulta/areas_atuacao_proponente.json',
         'municipios' => '/siconv/v1/consulta/municipios.json',
 		'empenhos' => '/siconv/v1/consulta/empenhos.json',
-		'convenios' => '/siconv/v1/consulta/convenios.json',
+        'convenios' => '/siconv/v1/consulta/convenios.json',
+		'naturezas_juridicas' => '/siconv/v1/consulta/naturezas_juridicas.json',
 	);
 
 	/**
@@ -59,9 +60,9 @@ class SiconvImporter extends Command {
 
 		$resource_key = $this->option('resource');
 
-		if(!in_array($resource_key, array_keys($this->resources)))
+		if(!in_array($resource_key, array_keys($this->resources)) || $resource_key == 'all')
 		{
-			return $this->error('Recurso inválidos, favor checar a documentaÃ§Ã£o.');
+			return $this->error('Recurso inválido, favor checar a documentação.');
 		}
 
 		$this->info('Iniciando a importação do recurso '. ucfirst($resource_key) .'.');
@@ -118,15 +119,20 @@ class SiconvImporter extends Command {
 			break;
 
             case 'convenios':
-            	$this->importConvenios($data);
+                $this->importConvenios($data);
+            break;
+
+            case 'naturezas_juridicas':
+            	$this->importNaturezasJuridica($data);
             break;
 
 			case 'all':
-				$this->importProponentes($data);
-                $this->importAreasAtuacaoProponente($data);
-                $this->importMunicipios($data);
-                $this->importEmpenhos($data);
-                $this->importConvenios($data);
+
+				foreach ($this->resources as $resource_key => $resource)
+                {
+                    $this->paginate($resource_key);
+                }
+
 			break;
 		}
 	}
@@ -140,7 +146,7 @@ class SiconvImporter extends Command {
 	{
 		foreach ($data['proponentes'] as $item)
 		{
-			$this->comment('Importando proponente CNPJ:'.$item['cnpj'].'.');
+			$this->comment('Importando proponente CNPJ:'.$item['id'].'.');
 
 			Proponente::create(array(
                 'siconv_id' => $item['id'],
@@ -164,25 +170,43 @@ class SiconvImporter extends Command {
 
 
 	/**
-	 * Importa os dados de Areas Atuacao de Proponentes
+     * Importa os dados de Areas Atuacao de Proponentes
+     * @param  array $data retornado da api do siconv
+     * @return [type]       [description]
+     */
+    public function importAreasAtuacaoProponente($data)
+    {
+        foreach ($data['areas_atuacao_proponente'] as $item)
+        {
+            $this->comment('Importando Area de Atuação:'. $item['id']. '.');
+
+            AreaAtuacaoProponente::create(array(
+                'siconv_id' => (int) $item['id'],
+                'descricao' => ucfirst_words($item['descricao'])
+            ));
+        }
+    }
+
+    /**
+	 * Importa os dados de Naturezas Juridicas
 	 * @param  array $data retornado da api do siconv
 	 * @return [type]      	[description]
 	 */
-	public function importAreasAtuacaoProponente($data)
+	public function importNaturezasJuridica($data)
 	{
-		foreach ($data['areas_atuacao_proponente'] as $item)
+		foreach ($data['naturezas_juridicas'] as $item)
 		{
-			$this->comment('Importando Area de Atuação:'. $item['id']. '.');
+			$this->comment('Importando Naturezas Juridicas:'. $item['id']. '.');
 
-			AreaAtuacaoProponente::create(array(
-				'siconv_id' => $item['id'],
-				'descricao' => ucfirst_words($item['descricao'])
+			NaturezaJuridica::create(array(
+				'siconv_id' => (int) $item['id'],
+				'nome' => ucfirst_words($item['nome'])
 			));
 		}
 	}
 
 	/**
-	 * Importa os dados de Areas Atuacao de Proponentes
+	 * Importa os dados dos Municipios
 	 * @param  array $data retornado da api do siconv
 	 * @return [type]      	[description]
 	 */
