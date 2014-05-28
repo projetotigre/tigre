@@ -14,7 +14,7 @@ class CreateProponenteTable extends Migration {
 	{
 		Schema::create('proponentes', function(Blueprint $table) {
 			$table->increments('id');
-            $table->integer('siconv_id')->index()->unique();
+            $table->string('siconv_id')->index()->unique();
 			$table->string('cnpj')->index()->unique();
 			$table->string('nome');
 			$table->integer('esfera_administrativa_id')->index();

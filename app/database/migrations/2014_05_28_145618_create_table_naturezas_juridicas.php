@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateTableAreasAtuacaoProponentes extends Migration {
+class CreateTableNaturezasJuridicas extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,10 @@ class CreateTableAreasAtuacaoProponentes extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('areas_atuacao_proponente', function(Blueprint $table) {
+		Schema::create('naturezas_juridicas', function(Blueprint $table) {
 			$table->increments('id');
-
+            $table->string('nome');
 			$table->integer('siconv_id');
-			$table->string('descricao');
-
 			$table->timestamps();
 		});
 	}
@@ -29,6 +27,7 @@ class CreateTableAreasAtuacaoProponentes extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('areas_atuacao_proponente');
+		Schema::drop('naturezas_juridicas');
 	}
+
 }
