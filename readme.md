@@ -1,6 +1,6 @@
 ## TIGRE - Transparência dos Investimentos Governamentais Rastreados Eletronicamente
 
-O projeto 
+A plataforma TIGRE foi concebida não apenas como um aplicativo, mas um framework para o desenvolvimento de filtros para a apresentação de dados padronizados.Isso se faz por meio da consulta padronizada de bases de dados públicas e a partir de uma camada de filtros disponibiliza consultas na forma de uma API(Aplication Program Interface) de consolidação. Essa API pode ser utilizada para a criação de aplicativos com frontends nativos de plataformas desktop, websites ou aplicativos mobile. Seguindo as boas práticas de desenvolvimento multi-camada, foi utilizada um modelo de arquitetura de software que separa a interação do usuário da representação da informação.
 
 ## Passos para participar do projeto:
 
