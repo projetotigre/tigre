@@ -1,5 +1,7 @@
 ## TIGRE - Transparência dos Investimentos Governamentais Rastreados Eletronicamente
 
+O projeto 
+
 ## Passos para participar do projeto:
 
 1. Leia a [documentação](https://github.com/hackatondasosc/tigre/wiki/O-Projeto) do projeto para conhecê-lo melhor.
@@ -23,8 +25,5 @@ O projeto está acessível online em [http://107.170.175.95/index.html](http://1
 
 ## Licença
 
-Salvo restrições em contrário, todo o código fonte desse projeto é disponibilizado sob a licença [MIT](http://opensource.org/licenses/MIT).
+Este projeto de Software Livre está disponibilizado sob a licença [MIT](http://opensource.org/licenses/MIT).
 
-A licença do projeto Apache Cordova é permissiva ([Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)), indo de encontro com as pretensões desse projeto de ser referência nos processos de implementação e boas práticas, independente das esferas em que venha a ser utilizado, inclusive por aplicações e banco de dados que pela sua natureza não são abertos ou públicos.
-
-A inclusão da biblioteca jqplot é Dual entre [MIT](http://opensource.org/licenses/MIT) e [GPL2](http://www.gnu.org/licenses/gpl-2.0.html), sendo-nos permitido a escolha de uma delas, no caso [MIT](http://opensource.org/licenses/MIT).
