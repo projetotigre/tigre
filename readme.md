@@ -12,7 +12,7 @@ A plataforma TIGRE foi concebida não apenas como um aplicativo, mas um framewor
 
 O projeto está acessível online em [http://107.170.175.95/index.html](http://107.170.175.95/index.html)
 
-##Autores
+##Mantenedores
 
 * Elias Gabriel (eliasgab2@gmail.com)
 * Fernando Pinheiro (nekoone@riseup.net) 
