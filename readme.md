@@ -16,7 +16,7 @@ O projeto está acessível online em [http://107.170.175.95/index.html](http://1
 
 * Elias Gabriel (eliasgab2@gmail.com)
 * Fernando Pinheiro (nekoone@riseup.net) 
-* Gabriel Silva (gvsrepins@gmail.com)   
+* Gabriel Silva (gabriel@sudoit.io)   
 * Isaac Batista (iscgenio@gmail.com)
 * Luiz Blanes (blanes@blanes.com.br)
 * Rafael Lima (amilucena@gmail.com)
