@@ -29,6 +29,7 @@ class ConveniosController extends \BaseController
         $query_convenio = $this->convenio
 
             ->join('proponentes', 'convenios.proponente_id', '=', 'proponentes.siconv_id')
+            ->join('municipios', 'proponentes.municipio_id', '=', 'municipios.municipio_id')
             ->join('naturezas_juridicas', 'proponentes.natureza_juridica_id', '=', 'naturezas_juridicas.siconv_id')
 
             ->where('data_inicio_vigencia', '>', $date->format('Y-m-d'))
@@ -44,9 +45,15 @@ class ConveniosController extends \BaseController
         return Response::json([
             'meta' => [
                 'total_itens' => $query_convenio->count(),
-                'valor_total' => $query_convenio->sum('valor_global'),
+                'valor_total' => $query_convenio->sum('valor_repasse_uniao'),
             ],
-            'convenios' => $query_convenio->get()->toArray()
+
+            'organizacoes' => $query_convenio->select([
+                'proponentes.*',
+                'convenios.valor_repasse_uniao',
+                'municipios.uf_nome as estado',
+                'municipios.nome as cidade',
+            ])->get()->toArray()
         ]);
 
         //return $result =

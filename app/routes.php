@@ -18,21 +18,12 @@ Route::group(array('prefix' => 'api/v1'), function()
 
     Route::get('/convenios', 'ConveniosController@index');
 
-    Route::get('/areas_atuacao', function()
-    {
-        return AreaAtuacaoProponente::all();
-    });
-
     Route::get('/naturezas_juridicas', function()
     {
-        return NaturezaJuridica::all();
+        return NaturezaJuridica::whereNotIn('id', array(1, 2, 3))
+                ->orderBy('id','desc')
+                ->get();
     });
 
-    Route::get('/organizacoes', function()
-    {
-        return Proponente::all(); //returna apenas 50 registros para teste
-
-        //dd(DB::getQueryLog());
-    });
 
 });
