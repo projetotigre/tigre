@@ -7,6 +7,10 @@
 
     # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]
+    
+    RewriteCond %{HTTP_HOST} ^projetotigre\.com.br$ [NC]
+    RewriteRule ^(.*)$ http://www.projetotigre.com.br/$1 [R=301,L]
+
 
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
