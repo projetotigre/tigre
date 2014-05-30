@@ -19,7 +19,7 @@ A plataforma TIGRE foi concebida não apenas como um aplicativo, mas um framewor
 * Luiz Blanes (blanes@blanes.com.br)
 * Rafael Lima (amilucena@gmail.com)
 * Roberta Cardoso (carmape@gmail.com)
-* Thiago B. Meurer (thiagopriest@gmail.com)
+* Thiago Branco Meurer (thiago@thiagopriest.net)
 
 ## Licença
 
