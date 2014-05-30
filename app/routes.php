@@ -25,5 +25,9 @@ Route::group(array('prefix' => 'api/v1'), function()
                 ->get();
     });
 
+    Route::get('/areas_atuacao', function()
+    {
+        return AreaAtuacaoProponente::all();
+    });
 
 });
