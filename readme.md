@@ -1,4 +1,4 @@
-## TIGRE - Transparência dos Investimentos Governamentais Rastreados Eletronicamente
+## TIGRE - Transparência dos Investimentos Governamentais Rastreados Eletronicamente - http://projetotigre.com.br/
 
 A plataforma TIGRE foi concebida não apenas como um aplicativo, mas um framework para o desenvolvimento de filtros para a apresentação de dados padronizados.Isso se faz por meio da consulta padronizada de bases de dados públicas e a partir de uma camada de filtros disponibiliza consultas na forma de uma API(Aplication Program Interface) de consolidação. Essa API pode ser utilizada para a criação de aplicativos com frontends nativos de plataformas desktop, websites ou aplicativos mobile. Seguindo as boas práticas de desenvolvimento multi-camada, foi utilizada um modelo de arquitetura de software que separa a interação do usuário da representação da informação.
 
@@ -10,13 +10,11 @@ A plataforma TIGRE foi concebida não apenas como um aplicativo, mas um framewor
 3. Dentro do diretório do projeto execute o comando `vagrant up` em seu terminal.
 4. **(opcional)** Edite o arquivo hosts do seu sitema e aponto o ip 192.168.56.101 para uma url qualquer. Ex de url: tigre.dev
 
-O projeto está acessível online em [http://107.170.175.95/index.html](http://107.170.175.95/index.html)
-
-##Autores
+##Mantenedores
 
 * Elias Gabriel (eliasgab2@gmail.com)
 * Fernando Pinheiro (nekoone@riseup.net) 
-* Gabriel Silva (gvsrepins@gmail.com)   
+* Gabriel Silva (gabriel@sudoit.io)   
 * Isaac Batista (iscgenio@gmail.com)
 * Luiz Blanes (blanes@blanes.com.br)
 * Rafael Lima (amilucena@gmail.com)
