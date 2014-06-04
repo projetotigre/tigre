@@ -1,6 +1,6 @@
 <?php
 
-class NaturezaJuricaController extends \BaseController
+class NaturezaJuridicaController extends \BaseController
 {
     /**
      * $natureza_jurica resource
@@ -12,8 +12,10 @@ class NaturezaJuricaController extends \BaseController
      * Inject dependencies by constructor
      *
      */
-    public function __construct(NaturezaJurica $natureza_jurica)
+    public function __construct(NaturezaJuridica $natureza_jurica)
     {
+        parent::__construct();
+
         $this->natureza_jurica = $natureza_jurica;
     }
 
@@ -24,7 +26,7 @@ class NaturezaJuricaController extends \BaseController
      */
     public function index()
     {
-        return $this->natureza_jurica->getAll();
+        return $this->natureza_jurica->paginate($this->limit);
     }
 
 }

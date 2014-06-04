@@ -3,10 +3,14 @@
 class ConveniosController extends \BaseController
 {
 
+    /**
+     * $convenio resource
+     * @var Convenio
+     */
     protected $convenio;
 
     /**
-     * [__construct description]
+     * Inject dependencies by constructor
      */
     public function __construct(Convenio $convenio)
     {
@@ -14,9 +18,9 @@ class ConveniosController extends \BaseController
     }
 
 	/**
-	 * Display a listing of the resource.
+	 * Return listing of the resource.
 	 *
-	 * @return Response
+	 * @return Response Json
 	 */
 	public function index()
 	{
@@ -55,11 +59,6 @@ class ConveniosController extends \BaseController
                 'municipios.nome as cidade',
             ])->get()->toArray()
         ]);
-
-        //return $result =
-
-        dd(DB::getQueryLog());
-
     }
 
 }

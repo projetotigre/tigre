@@ -15,6 +15,8 @@ class AreaAtuacaoProponenteController extends \BaseController {
      */
     public function __construct(AreaAtuacaoProponente $area_atuacao)
     {
+        parent::__construct();
+
         $this->area_atuacao = $area_atuacao;
     }
 
@@ -25,7 +27,6 @@ class AreaAtuacaoProponenteController extends \BaseController {
 	 */
 	public function index()
 	{
-		return $this->area_atuacao->all();
+		return $this->area_atuacao->paginate($this->limit);
 	}
-
 }

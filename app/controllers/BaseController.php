@@ -2,6 +2,18 @@
 
 class BaseController extends Controller {
 
+    /**
+     * Pagination limit
+     * @var int
+     */
+    protected $limit;
+
+
+    public function __construct()
+    {
+        $this->limit = Config::get('view.pagination-limit');
+    }
+
 	/**
 	 * Setup the layout used by the controller.
 	 *

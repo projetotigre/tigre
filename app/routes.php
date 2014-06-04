@@ -17,7 +17,8 @@ Route::group(array('prefix' => 'api/v1'), function()
 {
 
     Route::get('/convenios', 'ConveniosController@index');
-    Route::get('/naturezas_juridicas', 'NaturezaJuridica@index');
+    Route::get('/proponentes', 'ProponentesController@index');
+    Route::get('/naturezas_juridicas', 'NaturezaJuridicaController@index');
     Route::get('/areas_atuacao', 'AreaAtuacaoProponenteController@index');
 
 });
