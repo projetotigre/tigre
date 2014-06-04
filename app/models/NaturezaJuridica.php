@@ -24,4 +24,11 @@ class NaturezaJuridica extends \Eloquent
     protected $hidden = [
         'created_at', 'updated_at'
     ];
+
+    public function getAll()
+    {
+        return $this->whereNotIn('id', array(1, 2, 3))
+                ->orderBy('id','desc')
+                ->get();
+    }
 }
