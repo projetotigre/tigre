@@ -18,17 +18,6 @@ Route::group(array('prefix' => 'api/v1'), function()
 
     Route::get('/convenios', 'ConveniosController@index');
     Route::get('/naturezas_juridicas', 'NaturezaJuridica@index');
-
-    Route::get('/naturezas_juridicas', function()
-    {
-        return NaturezaJuridica::whereNotIn('id', array(1, 2, 3))
-                ->orderBy('id','desc')
-                ->get();
-    });
-
-    Route::get('/areas_atuacao', function()
-    {
-        return AreaAtuacaoProponente::all();
-    });
+    Route::get('/areas_atuacao', 'AreaAtuacaoProponenteController@index');
 
 });
