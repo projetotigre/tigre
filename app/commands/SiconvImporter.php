@@ -9,7 +9,7 @@ class SiconvImporter extends Command {
 
 	protected $client;
 
-	protected $base_url = 'http://api.convenios.gov.br';
+	protected $endpoint = 'http://api.convenios.gov.br';
 
 	protected $resources = array(
 		'proponentes' => '/siconv/v1/consulta/proponentes.json',
@@ -55,7 +55,7 @@ class SiconvImporter extends Command {
 
 		// Create a client with a base URL
 		$this->client = new GuzzleHttp\Client(array(
-			'base_url' => $this->base_url
+			'base_url' => $this->endpoint
 		));
 
 		$resource_key = $this->option('resource');
@@ -144,13 +144,15 @@ class SiconvImporter extends Command {
 	 */
 	public function importProponentes($data)
 	{
+        $cnpj_special_chars = array(".","/","-");
+
 		foreach ($data['proponentes'] as $item)
 		{
 			$this->comment('Importando proponente CNPJ:'.$item['id'].'.');
 
 			Proponente::create(array(
                 'siconv_id' => $item['id'],
-				'cnpj' => $item['cnpj'],
+				'cnpj' => str_replace($cnpj_special_chars,"",$item['cnpj']),
 				'nome' => $item['nome'],
 				'esfera_administrativa_id' => $item['esfera_administrativa']['EsferaAdministrativa']['id'],
 				'municipio_id' => $item['municipio']['Municipio']['id'],
