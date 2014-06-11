@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('/', 'HomeController@showWelcome');
 
 // Route group for API versioning
 Route::group(array('prefix' => 'api/v1'), function()
