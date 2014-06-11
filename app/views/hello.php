@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TIGRE | Transparência dos Investimentos Governamentais Rastreados Eletronicamente</
+    <title>TIGRE API| Transparência dos Investimentos Governamentais Rastreados Eletronicamente</title>
     <style>
         @import url(//fonts.googleapis.com/css?family=Lato:700);
 
@@ -14,7 +14,7 @@
         }
 
         .welcome {
-            width: 300px;
+            width: 400px;
             height: 200px;
             position: absolute;
             left: 50%;
@@ -38,7 +38,7 @@
         <a href="http://tigre.dev" title="TIGRE | Transparência dos Investimentos Governamentais Rastreados Eletronicamente">
             <img src="img/logo.png" alt="Logo TIGRE">
         </a>
-        <h1>Seja bem vindo.</h1>
+        <p>Desenvolvedor, seja bem vindo a nossa API.</p>
     </div>
 </body>
 </html>
