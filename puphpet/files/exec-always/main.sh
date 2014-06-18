@@ -4,7 +4,7 @@ cd /var/www/tigre
 # --- Backend stuff --- #
 
 echo "--- Composer is the future. But you knew that, did you master? Nice job. ---"
-composer install --dev      # instala as dependencias do backend
+composer update --dev      # instala as dependencias do backend
 echo "--- All set to go! Would you like to play a game? ---"
 php artisan migrate         # cria as tabelas do banco de dados
 
