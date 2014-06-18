@@ -1,9 +1,22 @@
 # --- Linux Stuff--- #
 cd /var/www/tigre
 
-# --- Laravel stuff here --- #
-php artisan migrate # migra o banco de dados
-php artisan db:seed # insere dados fake no banco
+# --- Backend stuff --- #
 
-# --- Load Bower packages --- #
+echo "--- Composer is the future. But you knew that, did you master? Nice job. ---"
+composer install --dev      # instala as dependencias do backend
+echo "--- All set to go! Would you like to play a game? ---"
+php artisan migrate         # cria as tabelas do banco de dados
+
+# --- Tigre stuff --- #
+
+echo "--- Importa todos dados mapeados da base siconv ---"
+# php artisan siconv:import --resource="all" #(performance issues)
+php artisan siconv:import --resource="proponentes"
+php artisan siconv:import --resource="areas_atuacao_proponente"
+php artisan siconv:import --resource="municipios"
+php artisan siconv:import --resource="naturezas_juridicas"
+php artisan siconv:import --resource="empenhos" #(performance issues)
+
+# --- Frontend packages --- #
 # bower install

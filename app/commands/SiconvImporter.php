@@ -60,18 +60,28 @@ class SiconvImporter extends Command {
 
 		$resource_key = $this->option('resource');
 
-		if(!in_array($resource_key, array_keys($this->resources)) || $resource_key == 'all')
+		if(!in_array($resource_key, array_keys($this->resources)) && $resource_key != 'all')
 		{
 			return $this->error('Recurso inválido, favor checar a documentação.');
 		}
 
 		$this->info('Iniciando a importação do recurso '. ucfirst($resource_key) .'.');
 
-		$this->paginate($resource_key);
+        ($resource_key  == 'all' ? $this->paginateAll() : $this->paginate($resource_key));
 	}
 
+
+    public function paginateAll()
+    {
+
+        foreach ($this->resources as $resource_key => $resource)
+        {
+            $this->paginate($resource_key);
+        }
+    }
+
 	/**
-	 * Pagina os dados da API de ConvÃªnios
+	 * Pagina os dados da API de Convênios
 	 * @param  array $data array retornado da api do siconv
 	 * @return [type] [description]
 	 */
@@ -79,7 +89,6 @@ class SiconvImporter extends Command {
 	{
 		// Value where to begin the search
 		$offset_value = 0;
-
 		do
 		{
 			// Send a request to http://api.convenios.gov.br
@@ -123,17 +132,8 @@ class SiconvImporter extends Command {
             break;
 
             case 'naturezas_juridicas':
-            	$this->importNaturezasJuridica($data);
+                $this->importNaturezasJuridica($data);
             break;
-
-			case 'all':
-
-				foreach ($this->resources as $resource_key => $resource)
-                {
-                    $this->paginate($resource_key);
-                }
-
-			break;
 		}
 	}
 
