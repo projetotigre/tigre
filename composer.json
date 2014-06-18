@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"guzzlehttp/guzzle": "~4.0",
-		"barryvdh/laravel-cors": "dev-master"
+		"barryvdh/laravel-cors": "dev-master",
+		"dingo/api": "0.*"
 	},
 	"require-dev": {
     	"way/generators": "2.*"

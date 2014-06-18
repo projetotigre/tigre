@@ -14,12 +14,11 @@
 Route::get('/', 'HomeController@showWelcome');
 
 // Route group for API versioning
-Route::group(array('prefix' => 'api/v1'), function()
-{
 
+Route::api(['version' => 'v1'], function()
+{
     Route::get('/convenios', 'ConveniosController@index');
     Route::get('/proponentes', 'ProponentesController@index');
     Route::get('/naturezas_juridicas', 'NaturezaJuridicaController@index');
     Route::get('/areas_atuacao', 'AreaAtuacaoProponenteController@index');
-
 });
