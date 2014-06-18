@@ -4,7 +4,7 @@ composer.phar
 composer.lock
 .env.*.php
 .env.php
-!.env.example.php
+!.env.local.php
 .DS_Store
 Thumbs.db
 phpmyadmin/
