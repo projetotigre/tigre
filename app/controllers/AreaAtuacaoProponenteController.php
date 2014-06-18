@@ -13,9 +13,9 @@ class AreaAtuacaoProponenteController extends \BaseController {
      * Inject dependencies by constructor
      *
      */
-    public function __construct(AreaAtuacaoProponente $area_atuacao)
+    public function __construct(Dispatcher $api, Shield $auth, AreaAtuacaoProponente $area_atuacao)
     {
-        parent::__construct();
+        parent::__construct($api, $auth);
 
         $this->area_atuacao = $area_atuacao;
     }

@@ -11,9 +11,12 @@ class ConveniosController extends \BaseController
 
     /**
      * Inject dependencies by constructor
+     *
      */
-    public function __construct(Convenio $convenio)
+    public function __construct(Dispatcher $api, Shield $auth, Convenio $convenio)
     {
+        parent::__construct($api, $auth);
+
         $this->convenio = $convenio;
     }
 
@@ -45,8 +48,7 @@ class ConveniosController extends \BaseController
             $query_convenio->where('proponentes.natureza_juridica_id', $natureza_juridica_id);
         }
 
-
-        return Response::json([
+        return Response::make([
             'meta' => [
                 'total_itens' => $query_convenio->count(),
                 'valor_total' => $query_convenio->sum('valor_repasse_uniao'),

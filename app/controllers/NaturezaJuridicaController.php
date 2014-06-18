@@ -7,14 +7,13 @@ class NaturezaJuridicaController extends \BaseController
      * @var NaturezaJurica
      */
     protected $natureza_jurica;
-
-    /**
+ /**
      * Inject dependencies by constructor
      *
      */
-    public function __construct(NaturezaJuridica $natureza_jurica)
+    public function __construct(Dispatcher $api, Shield $auth, NaturezaJurica $natureza_jurica)
     {
-        parent::__construct();
+        parent::__construct($api, $auth);
 
         $this->natureza_jurica = $natureza_jurica;
     }

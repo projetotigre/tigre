@@ -1,5 +1,8 @@
 <?php
 
+use Dingo\Api\Dispatcher;
+use Dingo\Api\Auth\Shield;
+
 class ProponentesController extends \BaseController {
 
 	/**
@@ -12,9 +15,9 @@ class ProponentesController extends \BaseController {
      * Inject dependencies by constructor
      *
      */
-    public function __construct(Proponente $proponente)
+    public function __construct(Dispatcher $api, Shield $auth, Proponente $proponente)
     {
-        parent::__construct();
+        parent::__construct($api, $auth);
 
         $this->proponente = $proponente;
     }
