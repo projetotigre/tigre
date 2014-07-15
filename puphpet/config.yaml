@@ -47,7 +47,7 @@ vagrantfile-local:
         shell: 'bash -l'
     vagrant:
         host: detect
-server:    
+server:
     packages:
         - vim
         - nano
@@ -84,7 +84,7 @@ apache:
             docroot: /var/www/tigre/public
             port: '80'
             setenv:
-                - 'APP_ENV dev'
+                - 'APP_ENV local'
             override:
                 - All
             options:
